@@ -1,8 +1,12 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:skype/core/services/server_locator.dart';
+
+import 'skype_app.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await serverLocator();
   await Firebase.initializeApp(
     options: const FirebaseOptions(
       apiKey: "AIzaSyBILjgLb76psvxW0MSF5tui-t0jkqyMkMI",
@@ -14,24 +18,4 @@ void main() async {
   );
 
   runApp(const SkypeApp());
-}
-
-class SkypeApp extends StatelessWidget {
-  const SkypeApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: Scaffold(
-        body: Center(
-          child: ElevatedButton(
-              onPressed: () async {}, child: const Text("test Notification")),
-        ),
-      ),
-    );
-  }
 }
