@@ -4,4 +4,5 @@ class StorageKeys {
   static const String userUid = "user_uid";
   static const String userId = "user_id";
   static const String userName = "user_name";
+  static const String userImage = "user_image";
 }

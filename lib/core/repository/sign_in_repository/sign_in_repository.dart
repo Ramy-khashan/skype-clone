@@ -5,4 +5,5 @@ abstract class SignInRepository {
   Future<Either<ServerException, String>> signIn(
       {required String email, required String password});
   Future<Either<ServerException, String>> forgetPassword();
+  Future<Either<String, String>> signInWithGoogle();
 }

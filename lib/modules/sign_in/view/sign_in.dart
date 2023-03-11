@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:skype/core/utils/app_assets.dart';
 import 'package:skype/core/utils/app_color.dart';
+import 'package:skype/core/utils/functions/app_toast.dart';
 import 'package:skype/core/utils/functions/size_config.dart';
 import 'package:skype/core/widget/animation_head.dart';
 import 'package:skype/core/widget/app_button.dart';
@@ -69,8 +71,8 @@ class SignInScreen extends StatelessWidget {
                               AppTextField(
                                   prefexIcon: const Icon(Icons.email),
                                   onValidate: (val) {
-                                     if(val.toString().isEmpty){
-                                      return"This field can't be empty";
+                                    if (val.toString().isEmpty) {
+                                      return "This field can't be empty";
                                     }
                                     return null;
                                   },
@@ -79,14 +81,13 @@ class SignInScreen extends StatelessWidget {
                               AppTextField(
                                   prefexIcon: const Icon(Icons.password),
                                   onValidate: (val) {
-                                    if(val.toString().isEmpty){
-                                      return"This field can't be empty";
+                                    if (val.toString().isEmpty) {
+                                      return "This field can't be empty";
                                     }
                                     return null;
                                   },
                                   isPassword: true,
                                   isHidePassword: controller.isShowPassword,
-                                
                                   onPressShow: () {
                                     controller.changeViewPassord();
                                   },
@@ -139,7 +140,41 @@ class SignInScreen extends StatelessWidget {
                           ],
                         ),
                         SizedBox(
-                          height: getHeight(10),
+                          width: getWidth(270),
+                          height: getHeight(53),
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.white,
+                            ),
+                            onPressed: controller.isLoadingSignInGoogle
+                                ? () {
+                                    appToast("in Process");
+                                  }
+                                : () {
+                                    controller.signInWithGoogle(context);
+                                  },
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.all(5.0),
+                                  child: Image.asset(
+                                    AppAssets.google,
+                                  ),
+                                ),
+                                Text(
+                                  "Sign With Google",
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: getFont(25),
+                                      fontWeight: FontWeight.w800),
+                                ),
+                                Visibility(
+                                    visible: controller.isLoadingSignInGoogle,
+                                    child: const LoadingItem())
+                              ],
+                            ),
+                          ),
                         ),
                       ],
                     ),

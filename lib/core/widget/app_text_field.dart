@@ -23,8 +23,7 @@ class AppTextField extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       
-      child: TextFormField(
-        autovalidateMode:AutovalidateMode.always ,
+      child: TextFormField( 
         obscureText: isPassword ? isHidePassword : false,
       controller: controller,
         validator: (value) => onValidate(value),

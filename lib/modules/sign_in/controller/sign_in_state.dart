@@ -11,4 +11,7 @@ class SignInInitial extends SignInState {}
 class ShowPasswordState extends SignInState {}
 class LoadingSignInState extends SignInState {} 
 class FaildSignInState extends SignInState {} 
-class SuccessgSignInState extends SignInState {} 
+class SuccessgSignInState extends SignInState {}
+ class LoadingSignInGoogleState extends SignInState {} 
+class FaildSignInGoogleState extends SignInState {} 
+class SuccessgSignInGoogleState extends SignInState {} 

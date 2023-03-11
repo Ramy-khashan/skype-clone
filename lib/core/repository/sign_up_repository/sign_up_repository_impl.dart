@@ -1,4 +1,4 @@
-import 'dart:developer';
+ 
 
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
@@ -19,8 +19,7 @@ class SignUpRepositoryImpl extends SignUpRepository {
       required String password,
       required String name,
       required String phone}) async {
-    try {
-      log(email);
+    try { 
       Map response = await dio.post(EndPoints.signUp, body: {
         "email": email,
         "password": password,
@@ -56,9 +55,9 @@ class SignUpRepositoryImpl extends SignUpRepository {
       "email": email,
       "phone": phone,
       "name": name,
-      "user_uid": uid
-    }).then((value) async {
-      log(value.id.toString());
+      "user_uid": uid,
+      "image": 'https://firebasestorage.googleapis.com/v0/b/have-fun-a5c87.appspot.com/o/userImg.png?alt=media&token=4f962df4-7c2d-4dd2-8950-f64e1ed9863d'
+    }).then((value) async { 
       await FirebaseFirestore.instance
           .collection(AppString.firestorUsereKey)
           .doc(value.id)

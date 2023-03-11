@@ -1,6 +1,10 @@
+  
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dio/dio.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:skype/core/api/dio_consumer.dart';
 import 'package:skype/core/api/end_points.dart';
 import 'package:skype/core/api/exceptions.dart';
@@ -58,7 +62,69 @@ class SignInRepositoryImpl extends SignInRepository {
           key: StorageKeys.userPhone, value: value.docs[0].get("phone"));
       storage.write(
           key: StorageKeys.userUid, value: value.docs[0].get("user_uid"));
+      storage.write(
+          key: StorageKeys.userImage, value: value.docs[0].get("image"));
       storage.write(key: StorageKeys.userId, value: value.docs[0].id);
     });
+  }
+
+  @override
+  Future<Either<String, String>> signInWithGoogle() async {
+    try {
+      GoogleSignIn signInGoogle = GoogleSignIn(
+          clientId:
+              "97075547990-vji8mh6ol44vk2pdueonceutgctb0bqp.apps.googleusercontent.com",
+          scopes: ["email", "profile"]);
+      signInGoogle.signOut();
+      GoogleSignInAccount? googleSignInAccount = await signInGoogle.signIn();
+      GoogleSignInAuthentication googleSignInAuthentication =
+          await googleSignInAccount!.authentication;
+
+      AuthCredential credential = GoogleAuthProvider.credential(
+        accessToken: googleSignInAuthentication.accessToken,
+        idToken: googleSignInAuthentication.idToken,
+      );
+
+      UserCredential userCredential =
+          await FirebaseAuth.instance.signInWithCredential(credential);
+      await setDataFromGoogle(userData: userCredential);
+      return right("Enter Successfully");
+    } on FirebaseException catch (e) {
+      return left(e.toString());
+    } catch (e) {
+      return left("Faild To Sign In");
+    }
+  }
+
+  setDataFromGoogle({required UserCredential userData}) async {
+    int count = 0;
+    await FirebaseFirestore.instance
+        .collection(AppString.firestorUsereKey)
+        .where("user_uid", isEqualTo: userData.user!.uid)
+        .get()
+        .then((value) {
+      count = value.docs.length;
+    });
+    if (count == 0) {
+      await FirebaseFirestore.instance
+          .collection(AppString.firestorUsereKey)
+          .add({
+        "email": userData.user!.email,
+        "phone": userData.user!.phoneNumber ?? "Not Exsist",
+        "name": userData.user!.displayName ?? "Name",
+        "user_uid": userData.user!.uid,
+        "image": userData.user!.photoURL ??
+            'https://firebasestorage.googleapis.com/v0/b/have-fun-a5c87.appspot.com/o/userImg.png?alt=media&token=4f962df4-7c2d-4dd2-8950-f64e1ed9863d'
+      }).then((value) async { 
+        await FirebaseFirestore.instance
+            .collection(AppString.firestorUsereKey)
+            .doc(value.id)
+            .update({"user_id": value.id});
+      }).whenComplete(() async {
+        await setLocalData(uid: userData.user!.uid);
+      });
+    } else {
+      await setLocalData(uid: userData.user!.uid);
+    }
   }
 }

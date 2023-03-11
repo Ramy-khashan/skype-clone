@@ -4,6 +4,8 @@ import 'package:skype/core/repository/sign_up_repository/sign_up_repository_impl
 import 'package:skype/core/services/server_locator.dart';
 import 'package:skype/core/utils/app_color.dart';
 import 'package:skype/core/utils/app_strings.dart';
+import 'package:skype/modules/home/view/home_screen.dart';
+import 'package:skype/modules/sign_in/view/sign_in.dart';
 import 'package:skype/modules/sign_up/controller/sign_up_cubit.dart';
 
 import 'core/repository/sign_in_repository/sign_in_repository_impl.dart';
@@ -30,9 +32,9 @@ class SkypeApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: AppString.title,
         theme: ThemeData(
-          useMaterial3: true,
+            useMaterial3: true,
         ),
-        home: const SplashScreen(),
+        home: const SignInScreen(),
       ),
     );
   }

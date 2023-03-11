@@ -65,7 +65,7 @@ class _SplashScreenState extends State<SplashScreen> {
                       shadows: const [
                         Shadow(
                             blurRadius: 6,
-                            color: Colors.black,
+                            color: Colors.white,
                             offset: Offset(3, 3))
                       ]),
                 ),

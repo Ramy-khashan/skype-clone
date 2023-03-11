@@ -4,6 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:skype/core/repository/sign_in_repository/sign_in_repository_impl.dart';
 import 'package:skype/core/utils/functions/app_toast.dart';
 
+import '../../home/view/home_screen.dart';
+
 part 'sign_in_state.dart';
 
 class SignInCubit extends Cubit<SignInState> {
@@ -34,12 +36,34 @@ class SignInCubit extends Cubit<SignInState> {
       appToast("success");
       isLoading = false;
       emit(SuccessgSignInState());
-      // Navigator.pushAndRemoveUntil(
-      //   context,
-      //   MaterialPageRoute(
-      //     builder: (context) => SignInScreen(),
-      //   ),
-      //   (route) => false);
+      Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const HomeScreen(),
+          ),
+          (route) => false);
+    });
+  }
+
+  bool isLoadingSignInGoogle = false;
+  signInWithGoogle(context) async {
+    isLoadingSignInGoogle = true;
+    emit(LoadingSignInGoogleState());
+    var response = await signInRepositoryImpl.signInWithGoogle();
+    response.fold((l) {
+      appToast(l.toString());
+      isLoadingSignInGoogle = false;
+      emit(FaildSignInGoogleState());
+    }, (r) {
+     
+      isLoadingSignInGoogle = false;
+      emit(SuccessgSignInGoogleState());
+      Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const HomeScreen(),
+          ),
+          (route) => false);
     });
   }
 }
