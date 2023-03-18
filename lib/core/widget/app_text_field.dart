@@ -2,19 +2,23 @@ import 'package:flutter/material.dart';
 
 class AppTextField extends StatelessWidget {
   final Function(dynamic value) onValidate;
-  final TextEditingController controller;
-  final String label;
-  final Widget prefexIcon;
+  final Function(dynamic value) ?onChange;
+  final TextEditingController? controller;
+  final String ?label;
+  final String? hint;
+  final Widget? prefexIcon;
   final Function()? onPressShow;
   final bool isPassword;
   final bool isHidePassword;
   const AppTextField(
       {super.key,
       required this.onValidate,
-      required this.controller,
-      required this.label,
-      required this.prefexIcon,
+        this.controller,
+        this.label,
+        this.hint,
+        this.prefexIcon,
       this.onPressShow,
+      this.onChange,
       this.isPassword = false,
       this.isHidePassword = false});
 
@@ -24,6 +28,7 @@ class AppTextField extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       
       child: TextFormField( 
+        onChanged: onChange,
         obscureText: isPassword ? isHidePassword : false,
       controller: controller,
         validator: (value) => onValidate(value),
@@ -40,7 +45,9 @@ class AppTextField extends StatelessWidget {
                       isHidePassword ? Icons.visibility : Icons.visibility_off))
               : const SizedBox.shrink(),
           labelText: label,
+          hintText: hint,
           labelStyle: const TextStyle(color: Colors.white),
+          hintStyle: const TextStyle(color: Colors.white),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(15),
             borderSide: const BorderSide(color: Colors.white, width: 1.5),

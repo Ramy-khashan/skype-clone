@@ -56,6 +56,8 @@ class SignUpRepositoryImpl extends SignUpRepository {
       "phone": phone,
       "name": name,
       "user_uid": uid,
+      "private":true,
+      "users":[],
       "image": 'https://firebasestorage.googleapis.com/v0/b/have-fun-a5c87.appspot.com/o/userImg.png?alt=media&token=4f962df4-7c2d-4dd2-8950-f64e1ed9863d'
     }).then((value) async { 
       await FirebaseFirestore.instance

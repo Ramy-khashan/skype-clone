@@ -17,6 +17,8 @@ class SignInCubit extends Cubit<SignInState> {
   final passwodController = TextEditingController();
   bool isShowPassword = true;
   changeViewPassord() {
+    emit(SignInInitial());
+
     isShowPassword = !isShowPassword;
     emit(ShowPasswordState());
   }
@@ -27,13 +29,13 @@ class SignInCubit extends Cubit<SignInState> {
     emit(LoadingSignInState());
     var response = await signInRepositoryImpl.signIn(
         email: emailController.text.trim(),
-        password: passwodController.text.trim());
+        password: passwodController.text.trim(),
+        context: context);
     response.fold((l) {
       appToast(l.toString());
       isLoading = false;
       emit(FaildSignInState());
     }, (r) {
-      appToast("success");
       isLoading = false;
       emit(SuccessgSignInState());
       Navigator.pushAndRemoveUntil(
@@ -49,13 +51,12 @@ class SignInCubit extends Cubit<SignInState> {
   signInWithGoogle(context) async {
     isLoadingSignInGoogle = true;
     emit(LoadingSignInGoogleState());
-    var response = await signInRepositoryImpl.signInWithGoogle();
+    var response = await signInRepositoryImpl.signInWithGoogle(context);
     response.fold((l) {
       appToast(l.toString());
       isLoadingSignInGoogle = false;
       emit(FaildSignInGoogleState());
     }, (r) {
-     
       isLoadingSignInGoogle = false;
       emit(SuccessgSignInGoogleState());
       Navigator.pushAndRemoveUntil(

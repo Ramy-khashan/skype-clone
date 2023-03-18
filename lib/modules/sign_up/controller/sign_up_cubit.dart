@@ -19,6 +19,8 @@ class SignUpCubit extends Cubit<SignUpState> {
   final passwordControrller = TextEditingController();
   bool isShowPassword = true;
   changeViewPassord() {
+    emit(SignUpInitial());
+
     isShowPassword = !isShowPassword;
     emit(ShowPasswordState());
   }

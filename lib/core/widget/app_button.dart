@@ -16,7 +16,7 @@ class AppButton extends StatelessWidget {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
         backgroundColor: Colors.white,
-          padding:  EdgeInsets.symmetric(horizontal: getWidth(100), vertical: getHeight(10))),
+          padding:  EdgeInsets.symmetric(horizontal: getWidth(20), vertical: getHeight(10))),
       onPressed: onPress,
       child: Text(
         head,

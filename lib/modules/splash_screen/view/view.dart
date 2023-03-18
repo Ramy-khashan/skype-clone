@@ -2,9 +2,12 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:skype/core/utils/functions/size_config.dart';
+import 'package:skype/core/utils/storage_keys.dart';
 import 'package:skype/core/widget/animation_head.dart';
+import 'package:skype/modules/home/view/home_screen.dart';
 import 'package:skype/modules/sign_in/view/sign_in.dart';
 
 import '../../../core/utils/app_color.dart';
@@ -17,15 +20,26 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  String? userUid;
+  getUser() async {
+    FlutterSecureStorage storage = const FlutterSecureStorage();
+
+    userUid = await storage.read(key: StorageKeys.userUid);
+  }
+
   @override
   void initState() {
+    getUser();
     Timer(const Duration(milliseconds: 3500), () {
-      Navigator.pushAndRemoveUntil(
-          context,
-          MaterialPageRoute(
-            builder: (context) => const SignInScreen(),
-          ),
-          (route) => false);
+      Navigator.pushAndRemoveUntil(context, MaterialPageRoute(
+        builder: (context) {
+          if ( userUid==null) {
+            return const SignInScreen();
+          } else {
+            return const HomeScreen();
+          }
+        },
+      ), (route) => false);
     });
     super.initState();
   }
@@ -66,7 +80,7 @@ class _SplashScreenState extends State<SplashScreen> {
                         Shadow(
                             blurRadius: 6,
                             color: Colors.white,
-                            offset: Offset(3, 3))
+                            offset: Offset( .5, .5))
                       ]),
                 ),
               ),

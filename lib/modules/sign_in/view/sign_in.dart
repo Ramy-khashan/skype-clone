@@ -96,49 +96,55 @@ class SignInScreen extends StatelessWidget {
                             ],
                           ),
                         ),
-                        Column(
-                          children: [
-                            controller.isLoading
-                                ? const LoadingItem()
-                                : AppButton(
-                                    head: "Sign In",
-                                    headSize: 23,
-                                    onPress: () {
-                                      if (controller.formKey.currentState!
-                                          .validate()) {
-                                        controller.signIn(context);
-                                      }
-                                    }),
-                            SizedBox(
-                              height: getHeight(15),
-                            ),
-                            Text.rich(TextSpan(
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w600,
-                                    color: Colors.grey.shade900),
-                                children: [
-                                  const TextSpan(
-                                      text: "Do not have an account?  "),
-                                  WidgetSpan(
-                                      child: GestureDetector(
-                                          onTap: () {
-                                            Navigator.pushAndRemoveUntil(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        const SignUpScreen()),
-                                                (route) => false);
-                                          },
-                                          child: const Text(
-                                            "Sign Up",
-                                            style: TextStyle(
-                                              fontWeight: FontWeight.w900,
-                                              color: Colors.white70,
-                                            ),
-                                          )))
-                                ]))
-                          ],
-                        ),
+                        Padding(
+                            padding:
+                                EdgeInsets.symmetric(horizontal: getWidth(40)),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                              children: [
+                                controller.isLoading
+                                    ? const LoadingItem()
+                                    : AppButton(
+                                        head: "Sign In",
+                                        headSize: 23,
+                                        onPress: () {
+                                          if (controller.formKey.currentState!
+                                              .validate()) {
+                                            controller.signIn(context);
+                                          }
+                                        }),
+                                SizedBox(
+                                  height: getHeight(15),
+                                ),
+                                Center(
+                                  child: Text.rich(TextSpan(
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w600,
+                                          color: Colors.grey.shade900),
+                                      children: [
+                                        const TextSpan(
+                                            text: "Do not have an account?  "),
+                                        WidgetSpan(
+                                            child: GestureDetector(
+                                                onTap: () {
+                                                  Navigator.pushAndRemoveUntil(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              const SignUpScreen()),
+                                                      (route) => false);
+                                                },
+                                                child: const Text(
+                                                  "Sign Up",
+                                                  style: TextStyle(
+                                                    fontWeight: FontWeight.w900,
+                                                    color: Colors.white70,
+                                                  ),
+                                                )))
+                                      ])),
+                                )
+                              ],
+                            )),
                         SizedBox(
                           width: getWidth(270),
                           height: getHeight(53),
