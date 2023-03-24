@@ -42,7 +42,7 @@ class AppTextField extends StatelessWidget {
               ? IconButton(
                   onPressed: onPressShow,
                   icon: Icon(
-                      isHidePassword ? Icons.visibility : Icons.visibility_off))
+                      isHidePassword ? Icons.visibility : Icons.visibility_off,color: Colors.white,))
               : const SizedBox.shrink(),
           labelText: label,
           hintText: hint,

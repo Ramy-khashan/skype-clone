@@ -8,7 +8,6 @@ abstract class AppcontrorllerState extends Equatable {
 }
 
 class AppcontrorllerInitial extends AppcontrorllerState {}
-class GetUserDataState extends AppcontrorllerState {}
-class GetUserFrindsState extends AppcontrorllerState {}
-class StartGettingFriendDataState extends AppcontrorllerState {}
-class GetFriendDataState extends AppcontrorllerState {}
+class GetValFromSPState extends AppcontrorllerState {}
+class ChangeToDarkState extends AppcontrorllerState {}
+

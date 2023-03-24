@@ -1,10 +1,14 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:skype/core/utils/functions/app_toast.dart';
 import 'package:skype/modules/chats/model/user_model.dart';
 
 import '../../../core/repository/search_repository/search_repository_impl.dart';
+import '../../../core/utils/app_strings.dart';
+import '../../../core/utils/storage_keys.dart';
 
 part 'search_state.dart';
 
@@ -31,6 +35,7 @@ class SearchCubit extends Cubit<SearchState> {
   getUserBySearch() async {
     isLoadingUsers = true;
     emit(LoaingSearchState());
+    getFrinds();
     final searchRes = await searchRepositoryImpl.getUSuserBySearch();
 
     searchRes.fold((fail) {
@@ -69,6 +74,22 @@ class SearchCubit extends Cubit<SearchState> {
 
     await searchRepositoryImpl.addFriendToUser(
         friendId: reciverId, context: context);
+    getFrinds();
     emit(AddedFrindtOUserState());
+  }
+
+  List userFriend = [];
+
+  getFrinds() async {
+    String? userId =
+        await const FlutterSecureStorage().read(key: StorageKeys.userId);
+    await FirebaseFirestore.instance
+        .collection(AppString.firestorUsereKey)
+        .doc(userId)
+        .get()
+        .then((value) {
+      userFriend = List.from(value.get("users"));
+    });
+    emit(GetFrindsIdState());
   }
 }

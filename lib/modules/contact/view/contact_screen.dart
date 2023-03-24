@@ -14,7 +14,7 @@ class ContactScreen extends StatelessWidget {
         itemBuilder: (context, index) => Column(
           children: [
             Card(
-              color: Colors.grey.shade300,
+             
               child: ListTile(
                   leading: Icon(Icons.phone_android),
                   title: Text("Ramy khashan"),

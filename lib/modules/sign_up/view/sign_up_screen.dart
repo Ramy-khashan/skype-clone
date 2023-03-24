@@ -66,7 +66,7 @@ class SignUpScreen extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               AppTextField(
-                                  prefexIcon: const Icon(Icons.person),
+                                  prefexIcon: const Icon(Icons.person,color: Colors.white,),
                                   onValidate: (val) {
                                      if(val.toString().isEmpty){
                                       return"This field can't be empty";
@@ -76,7 +76,7 @@ class SignUpScreen extends StatelessWidget {
                                   controller: controller.nameControrller,
                                   label: "Name"),
                               AppTextField(
-                                  prefexIcon: const Icon(Icons.email),
+                                  prefexIcon: const Icon(Icons.email,color: Colors.white,),
                                   onValidate: (val) {
                                      if(val.toString().isEmpty){
                                       return"This field can't be empty";
@@ -86,7 +86,7 @@ class SignUpScreen extends StatelessWidget {
                                   controller: controller.emailControrller,
                                   label: "Email Address"),
                               AppTextField(
-                                  prefexIcon: const Icon(Icons.phone),
+                                  prefexIcon: const Icon(Icons.phone,color: Colors.white,),
                                   onValidate: (val) {
                                      if(val.toString().isEmpty){
                                       return"This field can't be empty";
@@ -96,7 +96,7 @@ class SignUpScreen extends StatelessWidget {
                                   controller: controller.phoneControrller,
                                   label: "Phone Number"),
                               AppTextField(
-                                  prefexIcon: const Icon(Icons.password),
+                                  prefexIcon: const Icon(Icons.password,color: Colors.white,),
                                   onValidate: (val) {
                                      if(val.toString().isEmpty){
                                       return"This field can't be empty";

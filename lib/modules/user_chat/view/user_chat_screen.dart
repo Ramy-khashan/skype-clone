@@ -54,6 +54,7 @@ class UserChatScreen extends StatelessWidget {
                 },
                 icon: const FaIcon(
                   FontAwesomeIcons.video,
+                  color: Colors.white,
                   size: 25,
                 )),
             IconButton(
@@ -62,6 +63,8 @@ class UserChatScreen extends StatelessWidget {
                 },
                 icon: const FaIcon(
                   FontAwesomeIcons.phone,
+                  color: Colors.white,
+
                   size: 25,
                 ))
           ],

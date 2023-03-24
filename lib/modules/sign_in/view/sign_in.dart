@@ -69,7 +69,7 @@ class SignInScreen extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               AppTextField(
-                                  prefexIcon: const Icon(Icons.email),
+                                  prefexIcon: const Icon(Icons.email,color: Colors.white,),
                                   onValidate: (val) {
                                     if (val.toString().isEmpty) {
                                       return "This field can't be empty";
@@ -79,7 +79,7 @@ class SignInScreen extends StatelessWidget {
                                   controller: controller.emailController,
                                   label: "Email Address"),
                               AppTextField(
-                                  prefexIcon: const Icon(Icons.password),
+                                  prefexIcon: const Icon(Icons.password,color: Colors.white,),
                                   onValidate: (val) {
                                     if (val.toString().isEmpty) {
                                       return "This field can't be empty";
@@ -148,10 +148,7 @@ class SignInScreen extends StatelessWidget {
                         SizedBox(
                           width: getWidth(270),
                           height: getHeight(53),
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.white,
-                            ),
+                          child: ElevatedButton( 
                             onPressed: controller.isLoadingSignInGoogle
                                 ? () {
                                     appToast("in Process");
@@ -170,8 +167,7 @@ class SignInScreen extends StatelessWidget {
                                 ),
                                 Text(
                                   "Sign With Google",
-                                  style: TextStyle(
-                                      color: Colors.black,
+                                  style: TextStyle( 
                                       fontSize: getFont(25),
                                       fontWeight: FontWeight.w800),
                                 ),

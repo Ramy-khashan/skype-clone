@@ -7,6 +7,7 @@ import 'package:skype/core/widget/loading_item.dart';
 import 'package:skype/modules/chats/model/user_model.dart';
 import 'package:skype/modules/profile/controller/profile_cubit.dart';
 
+import '../../../config/app_controller/appcontrorller_cubit.dart';
 import '../../../core/repository/profile_repository/profile_repository_impl.dart';
 import '../../../core/services/server_locator.dart';
 import '../../../core/utils/app_color.dart';
@@ -116,6 +117,33 @@ class ProfileScreen extends StatelessWidget {
                       leading: const Icon(Icons.phone),
                       title: Text(userModel.phone!),
                     ),
+                  ),
+                  Card(
+                    child: ListTile(
+                      leading: const Icon(Icons.privacy_tip),
+                      title: const Text("User account private"),
+                      trailing: Switch(
+                          value: controller.isPrivate,
+                          onChanged: (value) {
+                            controller.changePrivateState(value);
+                          }),
+                    ),
+                  ),
+                  BlocBuilder<AppcontrorllerCubit, AppcontrorllerState>(
+                    builder: (context, state) {
+                      final appController = AppcontrorllerCubit.get(context);
+                      return Card(
+                        child: ListTile(
+                          leading: const Icon(Icons.dark_mode),
+                          title: const Text("Dark Mode"),
+                          trailing: Switch(
+                              value: appController.isDark,
+                              onChanged: (value) {
+                                appController.changeTheme();
+                              }),
+                        ),
+                      );
+                    },
                   ),
                   const Spacer(),
                   Padding(

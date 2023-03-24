@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../../../core/utils/functions/size_config.dart';
@@ -18,7 +16,7 @@ class HandleViewItem extends StatelessWidget {
         children: [
           FaIcon(
             icon,
-            color: Colors.white,
+           
             size: getWidth(155),
           ),
           SizedBox(
@@ -28,7 +26,7 @@ class HandleViewItem extends StatelessWidget {
             head,
             style: TextStyle(
               fontSize: getFont(30),
-              color: Colors.white,
+           
             ),
           ),
         ],

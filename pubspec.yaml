@@ -24,6 +24,7 @@ dependencies:
   regexpattern: ^2.0.0
   url_launcher: ^6.0.20
   firebase_storage: ^11.0.16
+  path_provider:
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.2

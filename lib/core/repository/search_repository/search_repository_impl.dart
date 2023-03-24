@@ -8,6 +8,7 @@ import 'package:skype/modules/chats/model/user_model.dart';
 
 import 'package:dartz/dartz.dart';
 
+import '../../../modules/chats/cubit/chat_cubit.dart';
 import 'search_repository.dart';
 
 class SearchRepositoryImpl extends SearchRepository {
@@ -96,6 +97,6 @@ class SearchRepositoryImpl extends SearchRepository {
         .update({
       "users": FieldValue.arrayUnion([userid])
     });
-    AppcontrorllerCubit.get(context).getFrinds();
+    ChatCubit.get(context).getFrinds();
   }
 }

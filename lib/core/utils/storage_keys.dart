@@ -5,4 +5,6 @@ class StorageKeys {
   static const String userId = "user_id";
   static const String userName = "user_name";
   static const String userImage = "user_image";
+  static const String userPrivateState = "private";
+  static const String theme = "theme";
 }

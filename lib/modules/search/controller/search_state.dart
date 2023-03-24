@@ -15,3 +15,4 @@ class SearchUserState extends SearchState {}
 class AddedFrindState extends SearchState {}
 class AddedFrindtOUserState extends SearchState {}
 class TextFieldOnChangeAction extends SearchState {}
+class GetFrindsIdState extends SearchState {}

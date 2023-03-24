@@ -2,54 +2,51 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-import 'package:skype/config/app_controller/appcontrorller_cubit.dart';
+import 'package:skype/core/services/server_locator.dart';
 import 'package:skype/core/utils/app_color.dart';
 import 'package:skype/core/utils/functions/size_config.dart';
 import 'package:skype/core/widget/loading_item.dart';
+import '../../../core/repository/app_repository/app_repository_impl.dart';
 import '../../../core/utils/app_assets.dart';
 import '../../../core/utils/app_strings.dart';
 import '../../user_chat/view/user_chat_screen.dart';
+import '../cubit/chat_cubit.dart';
 
 class ChatScreen extends StatelessWidget {
   const ChatScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<AppcontrorllerCubit, AppcontrorllerState>(
-        builder: (context, state) {
-      final appController = AppcontrorllerCubit.get(context);
-      return RefreshIndicator(
-        onRefresh: () async {
-          appController.getFrinds();
-        },
-        child: appController.isLoaingFrindData
+    return BlocBuilder<ChatCubit, ChatState>(builder: (context, state) {
+        final controller = ChatCubit.get(context);
+        return controller.isLoadingData
             ? const LoadingItem()
-            : appController.userFriendData.isEmpty
+            : controller.userFriendData.isEmpty
                 ? Center(
                     child: Text(
                       "This Quite For Now\nFind New Frinds",
                       textAlign: TextAlign.center,
-                      style:
-                          TextStyle(fontSize: getFont(30), color: Colors.white),
+                      style: TextStyle(
+                          fontSize: getFont(30), color: Colors.white),
                     ),
                   )
                 : Scaffold(
                     body: RefreshIndicator(
                         onRefresh: () async {
-                          appController.getFrinds();
+                          controller.getUserdata();
+                          controller.getFrinds();
                         },
                         child: ListView.builder(
-                          itemCount: appController.userFriendData.length,
+                          itemCount: controller.userFriendData.length,
                           itemBuilder: (context, index) {
                             return Column(
                               children: [
-                                Card(
-                                  color: Colors.grey.shade300,
+                                Card( 
                                   child: StreamBuilder(
                                       stream: FirebaseFirestore.instance
                                           .collection(AppString.messafeKey)
-                                          .doc(appController.userModel!.userid!)
-                                          .collection(appController
+                                          .doc(controller.userModel!.userid!)
+                                          .collection(controller
                                               .userFriendData[index].userid!)
                                           .orderBy("time")
                                           .snapshots(),
@@ -59,7 +56,7 @@ class ChatScreen extends StatelessWidget {
                                         if (snapshot.hasData) {
                                           return ListTile(
                                             leading: Hero(
-                                              tag: appController
+                                              tag: controller
                                                       .userFriendData[index]
                                                       .image
                                                       .toString() +
@@ -68,12 +65,12 @@ class ChatScreen extends StatelessWidget {
                                                 backgroundColor:
                                                     AppColor.primary,
                                                 foregroundImage: NetworkImage(
-                                                    appController
+                                                    controller
                                                         .userFriendData[index]
                                                         .image!),
                                               ),
                                             ),
-                                            title: Text(appController
+                                            title: Text(controller
                                                 .userFriendData[index].name!),
                                             subtitle: snapshot.data!.docs.last
                                                         .get("type") ==
@@ -81,10 +78,10 @@ class ChatScreen extends StatelessWidget {
                                                 ? Text(((snapshot
                                                             .data!.docs.last
                                                             .get("sender")) ==
-                                                        appController
-                                                            .userModel!.userid!
+                                                        controller.userModel!
+                                                            .userid!
                                                     ? "you : sent image"
-                                                    : "${appController.userFriendData[index].name!.split(" ")[0]} sent image"))
+                                                    : "${controller.userFriendData[index].name!.split(" ")[0]} sent image"))
                                                 : snapshot.data!.docs.last
                                                             .get("message") ==
                                                         AppString.likeKey
@@ -93,7 +90,8 @@ class ChatScreen extends StatelessWidget {
                                                             .centerLeft,
                                                         child: Row(
                                                           mainAxisSize:
-                                                              MainAxisSize.min,
+                                                              MainAxisSize
+                                                                  .min,
                                                           children: [
                                                             Text(((snapshot
                                                                         .data!
@@ -101,18 +99,20 @@ class ChatScreen extends StatelessWidget {
                                                                         .last
                                                                         .get(
                                                                             "sender")) ==
-                                                                    appController
+                                                                    controller
                                                                         .userModel!
                                                                         .userid!
                                                                 ? "you : "
                                                                 : "")),
                                                             Image.asset(
                                                               AppAssets.like,
-                                                              width:
-                                                                  getWidth(35),
+                                                              width: getWidth(
+                                                                  35),
                                                               height:
-                                                                  getHeight(35),
-                                                              fit: BoxFit.fill,
+                                                                  getHeight(
+                                                                      35),
+                                                              fit:
+                                                                  BoxFit.fill,
                                                             ),
                                                           ],
                                                         ),
@@ -122,14 +122,15 @@ class ChatScreen extends StatelessWidget {
                                                                         .last
                                                                         .get(
                                                                             "sender")) ==
-                                                                    appController
+                                                                    controller
                                                                         .userModel!
                                                                         .userid!
                                                                 ? "you : "
                                                                 : "") +
-                                                            snapshot
-                                                                .data!.docs.last
-                                                                .get("message")
+                                                            snapshot.data!
+                                                                .docs.last
+                                                                .get(
+                                                                    "message")
                                                                 .toString(),
                                                         maxLines: 1,
                                                         overflow: TextOverflow
@@ -141,16 +142,16 @@ class ChatScreen extends StatelessWidget {
                                                   MaterialPageRoute(
                                                     builder: (context) =>
                                                         UserChatScreen(
-                                                      tag: appController
+                                                      tag: controller
                                                               .userFriendData[
                                                                   index]
                                                               .image
                                                               .toString() +
                                                           index.toString(),
-                                                      friendData: appController
+                                                      friendData: controller
                                                               .userFriendData[
                                                           index],
-                                                      userid: appController
+                                                      userid: controller
                                                           .userModel!.userid!,
                                                     ),
                                                   ));
@@ -173,8 +174,8 @@ class ChatScreen extends StatelessWidget {
                               ],
                             );
                           },
-                        ))),
-      );
-    });
+                        )));
+      }
+    );
   }
 }

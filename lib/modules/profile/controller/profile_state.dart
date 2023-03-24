@@ -11,3 +11,5 @@ class ProfileInitial extends ProfileState {}
 class GetUserDataState extends ProfileState {}
 class LoadingUserDataState extends ProfileState {}
 class GetImageState extends ProfileState {}
+class ChangePrivateState extends ProfileState {}
+class SaveProfileImageState extends ProfileState {}

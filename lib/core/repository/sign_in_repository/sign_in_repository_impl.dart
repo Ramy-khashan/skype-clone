@@ -58,7 +58,7 @@ class SignInRepositoryImpl extends SignInRepository {
         .get()
         .then((value) {
       log(List.from(value.docs[0].get("users")).toString());
- 
+
       storage.write(
           key: StorageKeys.userEmail, value: value.docs[0].get("email"));
       storage.write(
@@ -69,6 +69,9 @@ class SignInRepositoryImpl extends SignInRepository {
           key: StorageKeys.userUid, value: value.docs[0].get("user_uid"));
       storage.write(
           key: StorageKeys.userImage, value: value.docs[0].get("image"));
+      storage.write(
+          key: StorageKeys.userPrivateState,
+          value: value.docs[0].get("private").toString());
       storage.write(key: StorageKeys.userId, value: value.docs[0].id);
     });
   }
@@ -120,8 +123,7 @@ class SignInRepositoryImpl extends SignInRepository {
         "phone": userData.user!.phoneNumber ?? "Not Exsist",
         "name": userData.user!.displayName ?? "Name",
         "users": [],
-      "private":true,
-
+        "private": true,
         "user_uid": userData.user!.uid,
         "image": userData.user!.photoURL ??
             'https://firebasestorage.googleapis.com/v0/b/have-fun-a5c87.appspot.com/o/userImg.png?alt=media&token=4f962df4-7c2d-4dd2-8950-f64e1ed9863d'
