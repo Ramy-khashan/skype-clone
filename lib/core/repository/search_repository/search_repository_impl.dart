@@ -59,7 +59,9 @@ class SearchRepositoryImpl extends SearchRepository {
       {
         "sender": userId,
         "reciver": reciverId,
-        "message": "Hi, $name",
+        "description":"",
+
+        "message": "",
         "time": DateTime.now(),
         "type": "text"
       },

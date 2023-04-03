@@ -13,6 +13,7 @@ import 'package:skype/modules/chats/view/chats_screen.dart';
 import 'package:skype/modules/contact/view/contact_screen.dart';
 
 import '../../../core/utils/functions/size_config.dart';
+import '../../group_chat_tabs/view/group_chat_tabs_screen.dart';
 import '../../profile/view/profile_screen.dart';
 
 part 'home_state.dart';
@@ -68,7 +69,7 @@ class HomeCubit extends Cubit<HomeState> {
 
   List<String> head = ["Chat", "Calls", "Contact"];
   List<Widget> pages = [
-    const ChatScreen(),
+   GroupChatTabsScreen(),
     const CallScreen(),
     const ContactScreen()
   ];

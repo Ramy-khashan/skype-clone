@@ -2,9 +2,11 @@ import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:skype/core/api/dio_consumer.dart';
 import 'package:skype/core/repository/app_repository/app_repository_impl.dart';
+import 'package:skype/core/repository/group_repository/group_repository_impl.dart';
 import 'package:skype/core/repository/sign_up_repository/sign_up_repository_impl.dart';
 
 import '../repository/chats_repository/chats_repository_impl.dart';
+import '../repository/group_chat/group_chat_repository_impl.dart';
 import '../repository/profile_repository/profile_repository_impl.dart';
 import '../repository/search_repository/search_repository_impl.dart';
 import '../repository/sign_in_repository/sign_in_repository_impl.dart';
@@ -29,6 +31,10 @@ Future<void> serverLocator() async {
   sl.registerSingleton<SearchRepositoryImpl>(SearchRepositoryImpl(
       // dio: sl.get<DioConsumer>(),
       ));  sl.registerSingleton<UserChatRepositoryImpl>(UserChatRepositoryImpl(
+      // dio: sl.get<DioConsumer>(),
+      )); sl.registerSingleton<GroupRepositoryImpl>(GroupRepositoryImpl(
+      // dio: sl.get<DioConsumer>(),
+      ));sl.registerSingleton<GroupChatRepositoryImpl>(GroupChatRepositoryImpl(
       // dio: sl.get<DioConsumer>(),
       ));
 }

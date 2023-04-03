@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../../../modules/user_chat/controller/user_chat_cubit.dart';
+import '../../../modules/group_chat/controller/group_chat_cubit.dart';
 import '../app_color.dart';
-import '../app_strings.dart';
 import 'size_config.dart';
 
-chatImageVideo(
-        {required String reciverId,
+groupImageVideo(
+        {required String groupId,
         required BuildContext context,
-        required UserChatCubit controller}) =>
+        required GroupChatCubit controller}) =>
     showModalBottomSheet(
       context: context,
       backgroundColor: AppColor.primary,
@@ -29,8 +28,8 @@ chatImageVideo(
                       context: context,
                       isCamera: true,
                       isPdf: false,
-                      reciver: reciverId,
-                      type: AppString.imageType,
+                      groupId: groupId,
+                      type: "image",
                       isVideo: false);
                 },
                 title: const Text("Get Image From Camera"),
@@ -46,9 +45,8 @@ chatImageVideo(
                       context: context,
                       isCamera: false,
                       isPdf: false,
-
-                      reciver: reciverId,
-                      type: AppString.imageType,
+                      groupId: groupId,
+                      type: "image",
                       isVideo: false);
                 },
                 title: const Text("Get Image From Gallory"),
@@ -62,11 +60,10 @@ chatImageVideo(
                 onTap: () {
                   controller.sendMsgVideoOrImageOrPdf(
                       context: context,
-                      isPdf: false,
-
                       isCamera: false,
-                      reciver: reciverId,
-                      type: AppString.videoType,
+                      isPdf: false,
+                      groupId: groupId,
+                      type: "video",
                       isVideo: true);
                 },
                 title: const Text("Get Video From Gallory"),
@@ -78,14 +75,14 @@ chatImageVideo(
                   FontAwesomeIcons.filePdf,
                 ),
                 onTap: () {
-                  controller.sendMsgVideoOrImageOrPdf(
+                 controller.sendMsgVideoOrImageOrPdf(
                       context: context,
+                      isCamera: false,
                       isPdf: true,
 
-                      isCamera: false,
-                      reciver: reciverId,
-                      type: AppString.pdfType,
-                      isVideo: true);
+                      groupId: groupId,
+                      type: "pdf",
+                      isVideo: false);
                 },
                 title: const Text("Get PDF"),
               ),

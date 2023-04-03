@@ -45,7 +45,7 @@ class SignInRepositoryImpl extends SignInRepository {
       if (e is DioError) {
         return left(dio.handleDioError(e));
       } else {
-        return left(ServerException("Invalid email or password"));
+        return left(const ServerException("Invalid email or password"));
       }
     }
   }
@@ -56,8 +56,7 @@ class SignInRepositoryImpl extends SignInRepository {
         .collection(AppString.firestorUsereKey)
         .where("user_uid", isEqualTo: uid)
         .get()
-        .then((value) {
-      log(List.from(value.docs[0].get("users")).toString());
+        .then((value) { 
 
       storage.write(
           key: StorageKeys.userEmail, value: value.docs[0].get("email"));
@@ -122,7 +121,7 @@ class SignInRepositoryImpl extends SignInRepository {
         "email": userData.user!.email,
         "phone": userData.user!.phoneNumber ?? "Not Exsist",
         "name": userData.user!.displayName ?? "Name",
-        "users": [],
+        "users": [], 
         "private": true,
         "user_uid": userData.user!.uid,
         "image": userData.user!.photoURL ??

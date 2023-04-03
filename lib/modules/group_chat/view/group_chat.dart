@@ -1,36 +1,36 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:skype/core/utils/app_assets.dart';
 import 'package:skype/core/utils/app_strings.dart';
 import 'package:skype/core/utils/functions/app_toast.dart';
-import 'package:skype/core/utils/functions/chat_image_video.dart';
-import 'package:skype/modules/chats/model/user_model.dart';
+import 'package:skype/core/utils/functions/group_image_video.dart';
+import 'package:skype/modules/group/model/group_model.dart';
+import 'package:skype/modules/group_chat/view/widget/group_msg.dart';
+import 'package:skype/modules/group_manager/view/group_manager_screen.dart';
 import 'package:skype/modules/user_chat/view/widgets/emojis.dart';
-import 'package:skype/modules/user_chat/view/widgets/message.dart';
 
-import '../../../core/repository/user_chat_repository/user_chat_repository_impl.dart';
+import '../../../core/repository/group_chat/group_chat_repository_impl.dart';
 import '../../../core/services/server_locator.dart';
 import '../../../core/utils/app_color.dart';
 import '../../../core/utils/functions/size_config.dart';
-import '../controller/user_chat_cubit.dart';
+import '../controller/group_chat_cubit.dart';
 
-class UserChatScreen extends StatelessWidget {
+class GroupChatScreen extends StatelessWidget {
   final String tag;
-  final UserModel friendData;
-  final String userid;
-  const UserChatScreen(
+  final GroupModel groupData;
+  final String userId;
+  const GroupChatScreen(
       {super.key,
       required this.tag,
-      required this.friendData,
-      required this.userid});
+      required this.groupData,
+      required this.userId});
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => UserChatCubit(
-          userChatRepositoryImpl: sl.get<UserChatRepositoryImpl>()),
+      create: (context) => GroupChatCubit(
+          groupChatRepositoryImpl: sl.get<GroupChatRepositoryImpl>()),
       child: Scaffold(
         appBar: AppBar(
           leading: IconButton(
@@ -50,23 +50,21 @@ class UserChatScreen extends StatelessWidget {
           actions: [
             IconButton(
                 onPressed: () {
-                  appToast('Coming soon!');
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => GroupManagerScreen(
+                          groupId: groupData.groupId,
+                          userId: userId,
+                          groupModel: groupData,
+                        ),
+                      ));
                 },
                 icon: const FaIcon(
-                  FontAwesomeIcons.video,
+                  FontAwesomeIcons.circleInfo,
                   color: Colors.white,
                   size: 25,
                 )),
-            IconButton(
-                onPressed: () {
-                  appToast('Coming soon!');
-                },
-                icon: const FaIcon(
-                  FontAwesomeIcons.phone,
-                  color: Colors.white,
-
-                  size: 25,
-                ))
           ],
           title: Row(
             mainAxisSize: MainAxisSize.min,
@@ -76,7 +74,7 @@ class UserChatScreen extends StatelessWidget {
                 child: CircleAvatar(
                   backgroundColor: Colors.amber,
                   radius: getWidth(26),
-                  foregroundImage: NetworkImage(friendData.image!),
+                  foregroundImage: NetworkImage(groupData.image),
                 ),
               ),
               SizedBox(
@@ -84,7 +82,7 @@ class UserChatScreen extends StatelessWidget {
               ),
               Expanded(
                 child: Text(
-                  friendData.name!.split(" ")[0],
+                  groupData.name.split(" ")[0],
                   overflow: TextOverflow.ellipsis,
                   maxLines: 1,
                   style: TextStyle(
@@ -98,10 +96,13 @@ class UserChatScreen extends StatelessWidget {
         ),
         body: Column(
           children: [
-            MessageItem(userid: userid, reciverid: friendData.userid!),
-            BlocBuilder<UserChatCubit, UserChatState>(
+            GroupMessageItem(
+              userId: userId,
+              groupId: groupData.groupId,
+            ),
+            BlocBuilder<GroupChatCubit, GroupChatState>(
               builder: (context, state) {
-                final controller = UserChatCubit.get(context);
+                final controller = GroupChatCubit.get(context);
                 return Column(
                   children: [
                     Row(
@@ -123,8 +124,8 @@ class UserChatScreen extends StatelessWidget {
                                   controller.controllerMsg.text.trim().isEmpty
                                       ? IconButton(
                                           onPressed: () {
-                                            chatImageVideo(
-                                                reciverId: friendData.userid!,
+                                            groupImageVideo(
+                                                groupId: groupData.groupId,
                                                 context: context,
                                                 controller: controller);
                                           },
@@ -176,8 +177,8 @@ class UserChatScreen extends StatelessWidget {
                                 onTap: () {
                                   controller.sendMsg(
                                       msg: AppString.likeKey,
-                                      reciver: friendData.userid!,
-                                     type: AppString.messageType);
+                                      groupId: groupData.groupId,
+                                      type: "text");
                                 },
                                 child: Padding(
                                   padding: EdgeInsets.all(getWidth(2)),
@@ -194,11 +195,13 @@ class UserChatScreen extends StatelessWidget {
                                 child: IconButton(
                                     onPressed: () {
                                       controller.sendMsg(
-                                          reciver: friendData.userid!,
-                                          type: AppString.messageType);
+                                          groupId: groupData.groupId,
+                                          type: "text");
                                     },
-                                    icon: const Icon(Icons.send_rounded
-                                    ,color: Colors.white,)),
+                                    icon: const Icon(
+                                      Icons.send_rounded,
+                                      color: Colors.white,
+                                    )),
                               ),
                       ],
                     ),
