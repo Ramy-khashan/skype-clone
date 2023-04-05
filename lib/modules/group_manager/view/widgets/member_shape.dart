@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart'; 
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/utils/app_strings.dart';
@@ -52,9 +52,10 @@ class MemberShape extends StatelessWidget {
                       ? admin.contains(userSnapshot.data!.get("user_id"))
                           ? userSnapshot.data!.get("user_id") == userId
                               ? IconButton(
-                                  onPressed: () async{
-                                    await   GroupManagerCubit.get(context)
-                                        .deleteUser(context: context,
+                                  onPressed: () async {
+                                    await GroupManagerCubit.get(context)
+                                        .deleteUser(
+                                            context: context,
                                             groupId: groupId,
                                             userId: userSnapshot.data!
                                                 .get("user_id"));
@@ -73,11 +74,10 @@ class MemberShape extends StatelessWidget {
                                 PopupMenuItem(
                                   child: const Text("Set As Admin"),
                                   onTap: () {
-                                   GroupManagerCubit.get(context)
-                                        .setAdmin(
-                                            groupId: groupId,
-                                            userId: userSnapshot.data!
-                                                .get("user_id"));
+                                    GroupManagerCubit.get(context).setAdmin(
+                                        groupId: groupId,
+                                        userId:
+                                            userSnapshot.data!.get("user_id"));
                                   },
                                 ),
                                 PopupMenuItem(
@@ -86,9 +86,10 @@ class MemberShape extends StatelessWidget {
                                       Text(" Delete"),
                                     ],
                                   ),
-                                  onTap: ()async{
-                                    await  GroupManagerCubit.get(context)
-                                        .deleteUser(context: context,
+                                  onTap: () async {
+                                    await GroupManagerCubit.get(context)
+                                        .deleteUser(
+                                            context: context,
                                             groupId: groupId,
                                             userId: userSnapshot.data!
                                                 .get("user_id"));
@@ -96,10 +97,16 @@ class MemberShape extends StatelessWidget {
                                 ),
                               ],
                             )
-                      : userId==userSnapshot.data!
-                                                .get("user_id")?IconButton(
-                          onPressed: () {},
-                          icon: const Icon(Icons.login_rounded)):SizedBox()),
+                      : userId == userSnapshot.data!.get("user_id")
+                          ? IconButton(
+                              onPressed: () async {
+                                await GroupManagerCubit.get(context).deleteUser(
+                                    context: context,
+                                    groupId: groupId,
+                                    userId: userId);
+                              },
+                              icon: const Icon(Icons.login_rounded))
+                          : SizedBox()),
             );
           } else {
             return const LoadingItem();

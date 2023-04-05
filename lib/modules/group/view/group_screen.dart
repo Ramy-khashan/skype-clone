@@ -145,62 +145,94 @@ class _GroupScreenState extends State<GroupScreen>
                                           title: Text(
                                               controller.userGroup[index].name),
                                           subtitle: snapshot.data!.docs.last
-                                                          .get("messages").toString().isEmpty?Text("Group Created by ${ snapshot.data!.docs.last
-                                                          .get("name")} "): snapshot.data!.docs.last
-                                                      .get("type") ==
-                                                  "image"
-                                              ? Text(((snapshot.data!.docs.last
-                                                          .get("sender")) ==
-                                                      controller
-                                                          .userModel!.userid!
-                                                  ? "you : sent image"
-                                                  : "${controller.userFriendData[index].name!.split(" ")[0]} sent image"))
+                                                  .get("messages")
+                                                  .toString()
+                                                  .isEmpty
+                                              ? Text(
+                                                  "Group Created by ${snapshot.data!.docs.last.get("name")} ")
                                               : snapshot.data!.docs.last
-                                                          .get("messages") ==
-                                                      AppString.likeKey
-                                                  ? Align(
-                                                      alignment:
-                                                          Alignment.centerLeft,
-                                                      child: Row(
-                                                        mainAxisSize:
-                                                            MainAxisSize.min,
-                                                        children: [
-                                                          Text(((snapshot.data!
-                                                                      .docs.last
-                                                                      .get(
-                                                                          "sender")) ==
-                                                                  controller
-                                                                      .userModel!
-                                                                      .userid!
-                                                              ? "you : "
-                                                              : "")),
-                                                          Image.asset(
-                                                            AppAssets.like,
-                                                            width: getWidth(35),
-                                                            height:
-                                                                getHeight(35),
-                                                            fit: BoxFit.fill,
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    )
-                                                  : Text(
-                                                      ((snapshot.data!.docs.last
-                                                                      .get(
-                                                                          "sender")) ==
-                                                                  controller
-                                                                      .userModel!
-                                                                      .userid!
-                                                              ? "you : "
-                                                              : "") +
-                                                          snapshot
+                                                          .get("type") ==
+                                                      "image"
+                                                  ? Text(((snapshot
                                                               .data!.docs.last
-                                                              .get("messages")
-                                                              .toString(),
-                                                      maxLines: 1,
-                                                      overflow:
-                                                          TextOverflow.ellipsis,
-                                                    ),
+                                                              .get("sender")) ==
+                                                          controller.userModel!
+                                                              .userid!
+                                                      ? "you : sent image"
+                                                      : "${controller.userFriendData[index].name!.split(" ")[0]} sent image")) :snapshot.data!.docs.last
+                                                          .get("type") ==
+                                                      "video"
+                                                  ? Text(((snapshot
+                                                              .data!.docs.last
+                                                              .get("sender")) ==
+                                                          controller.userModel!
+                                                              .userid!
+                                                      ? "you : sent video"
+                                                      : "${controller.userFriendData[index].name!.split(" ")[0]} sent video")) :snapshot.data!.docs.last
+                                                          .get("type") ==
+                                                      "pdf"
+                                                  ? Text(((snapshot
+                                                              .data!.docs.last
+                                                              .get("sender")) ==
+                                                          controller.userModel!
+                                                              .userid!
+                                                      ? "you : sent PDF"
+                                                      : "${controller.userFriendData[index].name!.split(" ")[0]} sent PDF"))
+                                                  : snapshot.data!.docs.last
+                                                              .get(
+                                                                  "messages") ==
+                                                          AppString.likeKey
+                                                      ? Align(
+                                                          alignment: Alignment
+                                                              .centerLeft,
+                                                          child: Row(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .min,
+                                                            children: [
+                                                              Text(((snapshot
+                                                                          .data!
+                                                                          .docs
+                                                                          .last
+                                                                          .get(
+                                                                              "sender")) ==
+                                                                      controller
+                                                                          .userModel!
+                                                                          .userid!
+                                                                  ? "you : "
+                                                                  : "")),
+                                                              Image.asset(
+                                                                AppAssets.like,
+                                                                width: getWidth(
+                                                                    35),
+                                                                height:
+                                                                    getHeight(
+                                                                        35),
+                                                                fit:
+                                                                    BoxFit.fill,
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        )
+                                                      : Text(
+                                                          ((snapshot.data!.docs
+                                                                          .last
+                                                                          .get(
+                                                                              "sender")) ==
+                                                                      controller
+                                                                          .userModel!
+                                                                          .userid!
+                                                                  ? "you : "
+                                                                  : "") +
+                                                              snapshot.data!
+                                                                  .docs.last
+                                                                  .get(
+                                                                      "messages")
+                                                                  .toString(),
+                                                          maxLines: 1,
+                                                          overflow: TextOverflow
+                                                              .ellipsis,
+                                                        ),
                                           onTap: () {
                                             Navigator.push(
                                                 context,

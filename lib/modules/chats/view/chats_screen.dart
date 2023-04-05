@@ -95,7 +95,16 @@ class ChatScreen extends StatelessWidget {
                                                           controller.userModel!
                                                               .userid!
                                                       ? "you : sent image"
-                                                      : "${controller.userFriendData[index].name!.split(" ")[0]} sent image"))
+                                                      : "${controller.userFriendData[index].name!.split(" ")[0]} sent image")) :snapshot.data!.docs.last
+                                                          .get("type") ==
+                                                      "video"
+                                                  ? Text(((snapshot
+                                                              .data!.docs.last
+                                                              .get("sender")) ==
+                                                          controller.userModel!
+                                                              .userid!
+                                                      ? "you : sent video"
+                                                      : "${controller.userFriendData[index].name!.split(" ")[0]} sent video"))
                                                   : snapshot.data!.docs.last
                                                               .get("message") ==
                                                           AppString.likeKey
