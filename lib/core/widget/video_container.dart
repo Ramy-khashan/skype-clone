@@ -1,5 +1,6 @@
 import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:skype/core/widget/loading_item.dart';
 import 'package:video_player/video_player.dart';
 
@@ -41,7 +42,16 @@ class _VideoContainerShapeState extends State<VideoContainerShape> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      backgroundColor: Colors.black,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,elevation: 0,
+        leading: IconButton(
+          icon: Icon(FontAwesomeIcons.arrowLeft,color: Colors.white,),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+      ),
       body: Center(
         child: chewieController == null
             ? const LoadingItem()

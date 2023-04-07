@@ -110,7 +110,7 @@ class UserChatScreen extends StatelessWidget {
                             child: Padding(
                           padding: const EdgeInsets.all(2.0),
                           child: TextField(
-                            style: const TextStyle(color: Colors.white),
+                            style:  TextStyle(color:Theme.of(context).brightness.index==1?Colors.black: Colors.white),
                             controller: controller.controllerMsg,
                             onChanged: (val) {
                               controller.onText(val);

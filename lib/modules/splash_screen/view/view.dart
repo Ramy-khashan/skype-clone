@@ -6,7 +6,6 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:skype/core/utils/functions/size_config.dart';
 import 'package:skype/core/utils/storage_keys.dart';
-import 'package:skype/core/widget/animation_head.dart';
 import 'package:skype/modules/home/view/home_screen.dart';
 import 'package:skype/modules/sign_in/view/sign_in.dart';
 
@@ -71,7 +70,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 baseColor: Colors.white,
                 highlightColor: AppColor.primary,
                 child: Text(
-                  "Skype",
+                  "Pla-La",
                   style: TextStyle(
                       color: Colors.white,
                       fontSize: getFont(80),

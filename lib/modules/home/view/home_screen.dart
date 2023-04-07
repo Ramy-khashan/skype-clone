@@ -51,13 +51,13 @@ class HomeScreen extends StatelessWidget {
                       ),
                     )
                   ],
-                  leading: IconButton(
-                    onPressed: () {},
-                    icon: const FaIcon(
-                      FontAwesomeIcons.bell,
-                      color: Colors.white,
-                    ),
-                  ),
+                  // leading: IconButton(
+                  //   onPressed: () {},
+                  //   icon: const FaIcon(
+                  //     FontAwesomeIcons.bell,
+                  //     color: Colors.white,
+                  //   ),
+                  // ),
                   flexibleSpace: Container(
                     decoration: const BoxDecoration(
                         gradient: LinearGradient(
