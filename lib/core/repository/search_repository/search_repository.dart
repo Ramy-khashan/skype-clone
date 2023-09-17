@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:skype/modules/chats/model/user_model.dart';
+import '../../../modules/chats/model/user_model.dart';
 
 abstract class SearchRepository {
   Future<Either<String, List<UserModel>>> getUSuserBySearch();

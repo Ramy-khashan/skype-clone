@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:skype/core/utils/app_assets.dart';
-import 'package:skype/core/utils/app_color.dart';
-import 'package:skype/core/utils/functions/app_toast.dart';
-import 'package:skype/core/utils/functions/size_config.dart';
-import 'package:skype/core/widget/animation_head.dart';
-import 'package:skype/core/widget/app_button.dart';
-import 'package:skype/core/widget/app_text_field.dart';
-import 'package:skype/core/widget/loading_item.dart';
-import 'package:skype/modules/sign_up/view/sign_up_screen.dart';
+import 'package:flutter_bloc/flutter_bloc.dart'; 
+import '../../../core/utils/app_assets.dart';
+import '../../../core/utils/app_color.dart'; 
+import '../../../core/utils/functions/size_config.dart';
+import '../../../core/widget/animation_head.dart';
+import '../../../core/widget/app_button.dart';
+import '../../../core/widget/app_text_field.dart';
+import '../../../core/widget/loading_item.dart';
+import 'widgets/sign_with_diff_way_shape.dart';
+import '../../sign_up/view/sign_up_screen.dart';
 
 import '../controller/sign_in_cubit.dart';
 
@@ -69,7 +69,10 @@ class SignInScreen extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               AppTextField(
-                                  prefexIcon: const Icon(Icons.email,color: Colors.white,),
+                                  prefexIcon: const Icon(
+                                    Icons.email,
+                                    color: Colors.white,
+                                  ),
                                   onValidate: (val) {
                                     if (val.toString().isEmpty) {
                                       return "This field can't be empty";
@@ -79,7 +82,10 @@ class SignInScreen extends StatelessWidget {
                                   controller: controller.emailController,
                                   label: "Email Address"),
                               AppTextField(
-                                  prefexIcon: const Icon(Icons.password,color: Colors.white,),
+                                  prefexIcon: const Icon(
+                                    Icons.password,
+                                    color: Colors.white,
+                                  ),
                                   onValidate: (val) {
                                     if (val.toString().isEmpty) {
                                       return "This field can't be empty";
@@ -115,6 +121,14 @@ class SignInScreen extends StatelessWidget {
                                         }),
                                 SizedBox(
                                   height: getHeight(15),
+                                ),   SignInWithDifferantWayShape(
+                                isLoading: controller.isLoadingSignInGoogle,
+                                onPress: () {
+                                  controller.signInWithGoogle(context);
+                                },
+                                img: AppAssets.google,
+                                title: "Sign With Google"),   SizedBox(
+                                  height: getHeight(15),
                                 ),
                                 Center(
                                   child: Text.rich(TextSpan(
@@ -122,8 +136,8 @@ class SignInScreen extends StatelessWidget {
                                           fontWeight: FontWeight.w600,
                                           color: Colors.grey.shade900),
                                       children: [
-                                        const TextSpan(
-                                            text: "Do not have an account?  "),
+                                          TextSpan(
+                                            text: "Do not have an account?  ",   style: TextStyle(fontSize: getFont(20),)),
                                         WidgetSpan(
                                             child: GestureDetector(
                                                 onTap: () {
@@ -134,50 +148,44 @@ class SignInScreen extends StatelessWidget {
                                                               const SignUpScreen()),
                                                       (route) => false);
                                                 },
-                                                child: const Text(
+                                                child:   Text(
                                                   "Sign Up",
-                                                  style: TextStyle(
-                                                    fontWeight: FontWeight.w900,
-                                                    color: Colors.white70,
+                                                  style: TextStyle(fontSize: getFont(20),
+                                                    fontWeight: FontWeight.w900,decoration: TextDecoration.underline,
+                                                    color: Colors.white60,
                                                   ),
                                                 )))
                                       ])),
                                 )
                               ],
                             )),
-                        SizedBox(
-                          width: getWidth(270),
-                          height: getHeight(53),
-                          child: ElevatedButton( 
-                            onPressed: controller.isLoadingSignInGoogle
-                                ? () {
-                                    appToast("in Process");
-                                  }
-                                : () {
-                                    controller.signInWithGoogle(context);
-                                  },
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.all(5.0),
-                                  child: Image.asset(
-                                    AppAssets.google,
-                                  ),
-                                ),
-                                Text(
-                                  "Sign With Google",
-                                  style: TextStyle( 
-                                      fontSize: getFont(25),
-                                      fontWeight: FontWeight.w800),
-                                ),
-                                Visibility(
-                                    visible: controller.isLoadingSignInGoogle,
-                                    child: const LoadingItem())
-                              ],
-                            ),
-                          ),
-                        ),
+                        // Column(
+                        //   children: [
+                          
+                        //     // SizedBox(
+                        //     //   height: getHeight(15),
+                        //     // ),
+                        //     // SignInWithDifferantWayShape(
+                        //     //     isLoading:  false,
+                        //     //     onPress: () async {
+                        //     //       await FacebookAuth.instance.login(
+                        //     //           permissions: [
+                        //     //             "Advanced Access",
+                        //     //             "email"
+                        //     //           ]).then((value) async {
+                        //     //           print(value);
+                        //     //         // await FacebookAuth.instance
+                        //     //         //     .getUserData()
+                        //     //         //     .then((userData) async {
+                        //     //         //   print(userData);
+                        //     //         // });
+                        //     //       });
+                        //     //     },
+                        //     //     img: AppAssets.fb,
+                        //     //     title: "Sign With Facebook")
+                        
+                        //   ],
+                        // )
                       ],
                     ),
                   );

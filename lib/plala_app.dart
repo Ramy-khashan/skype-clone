@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:skype/config/app_controller/appcontrorller_cubit.dart';
-import 'package:skype/core/repository/sign_up_repository/sign_up_repository_impl.dart';
-import 'package:skype/core/services/server_locator.dart';
-import 'package:skype/core/utils/app_color.dart';
-import 'package:skype/core/utils/app_strings.dart';
-import 'package:skype/modules/sign_up/controller/sign_up_cubit.dart';
-import 'package:skype/modules/splash_screen/view/view.dart';
+import 'config/app_controller/appcontrorller_cubit.dart';
+import 'core/repository/sign_up_repository/sign_up_repository_impl.dart';
+import 'core/services/server_locator.dart';
+import 'core/utils/app_color.dart';
+import 'core/utils/app_strings.dart';
+import 'modules/sign_up/controller/sign_up_cubit.dart';
+import 'modules/splash_screen/view/view.dart';
 import 'core/repository/sign_in_repository/sign_in_repository_impl.dart';
 import 'modules/sign_in/controller/sign_in_cubit.dart';
 
@@ -30,7 +30,7 @@ class SkypeApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) =>
-              SignInCubit(signInRepositoryImpl: sl.get<SignInRepositoryImpl>()),
+              SignInCubit(signInRepositoryImpl: sl.get<SignInRepositoryImpl>())..getToken(),
         )
       ],
       child: BlocBuilder<AppcontrorllerCubit, AppcontrorllerState>(

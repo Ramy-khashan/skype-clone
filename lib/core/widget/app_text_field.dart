@@ -46,6 +46,9 @@ class AppTextField extends StatelessWidget {
               : const SizedBox.shrink(),
           labelText: label,
           hintText: hint,
+          errorStyle: TextStyle(color: Colors.red.shade700),
+          errorBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.red.shade700)),
+          focusedErrorBorder:OutlineInputBorder(borderSide: BorderSide(color: Colors.red.shade700)),
           labelStyle: const TextStyle(color: Colors.white),
           hintStyle: const TextStyle(color: Colors.white),
           border: OutlineInputBorder(

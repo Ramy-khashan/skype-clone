@@ -2,7 +2,7 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:skype/core/utils/app_strings.dart';
+import '../../utils/app_strings.dart';
 
 import '../../../modules/chats/model/user_model.dart';
 import '../../utils/storage_keys.dart';
@@ -20,6 +20,7 @@ class AppRepositoryImpl extends AppRepository {
     String? image = await storage.read(key: StorageKeys.userImage);
 
     return UserModel(
+      token:"`" ,
         name: name!,
         image: image!,
         phone: phone!,
@@ -53,6 +54,7 @@ class AppRepositoryImpl extends AppRepository {
           .collection(AppString.firestorUsereKey)
           .doc(element)
           .get()
+
           .then(
         (value) {
           frindsData.add(

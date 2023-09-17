@@ -1,22 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
-import 'package:skype/core/utils/functions/app_toast.dart';
-import 'package:skype/core/utils/functions/size_config.dart';
+import '../../../core/utils/functions/app_toast.dart';
+import '../../../core/utils/functions/size_config.dart';
+
+import '../../../core/services/call_service/model/call_model.dart';
 
 class CallScreen extends StatelessWidget {
-  const CallScreen({super.key});
+  final Call call;
+  const CallScreen({super.key, required this.call});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: ListView.builder(
-        
         itemCount: 15,
         itemBuilder: (context, index) => Column(
           children: [
-            Card(  
-            
+            Card(
               child: ListTile(
                 leading: const CircleAvatar(
                   foregroundImage: NetworkImage(
@@ -30,7 +31,7 @@ class CallScreen extends StatelessWidget {
                   children: [
                     Text(DateFormat.jm().format(DateTime.now())),
                     GestureDetector(
-                      onTap: (){
+                      onTap: () {
                         appToast("Coming soon");
                       },
                       child: FaIcon(
@@ -41,7 +42,9 @@ class CallScreen extends StatelessWidget {
                 ),
               ),
             ),
-     SizedBox(height: index==14?getHeight(80):0,)
+            SizedBox(
+              height: index == 14 ? getHeight(80) : 0,
+            )
           ],
         ),
       ),

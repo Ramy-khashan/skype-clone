@@ -1,9 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
-import 'package:skype/core/api/dio_consumer.dart';
-import 'package:skype/core/repository/app_repository/app_repository_impl.dart';
-import 'package:skype/core/repository/group_repository/group_repository_impl.dart';
-import 'package:skype/core/repository/sign_up_repository/sign_up_repository_impl.dart';
+import '../api/dio_consumer.dart';
+import '../repository/app_repository/app_repository_impl.dart';
+import '../repository/group_repository/group_repository_impl.dart';
+import '../repository/sign_up_repository/sign_up_repository_impl.dart';
 
 import '../repository/chats_repository/chats_repository_impl.dart';
 import '../repository/group_chat/group_chat_repository_impl.dart';

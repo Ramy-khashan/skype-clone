@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:skype/core/utils/app_color.dart';
-import 'package:skype/core/utils/functions/size_config.dart';
-import 'package:skype/core/widget/animation_head.dart';
-import 'package:skype/core/widget/app_button.dart';
-import 'package:skype/core/widget/app_text_field.dart';
-import 'package:skype/modules/sign_in/view/sign_in.dart';
-import 'package:skype/modules/sign_up/controller/sign_up_cubit.dart';
+import '../../../core/utils/app_color.dart';
+import '../../../core/utils/functions/size_config.dart';
+import '../../../core/widget/animation_head.dart';
+import '../../../core/widget/app_button.dart';
+import '../../../core/widget/app_text_field.dart';
+import '../../sign_in/view/sign_in.dart';
+import '../controller/sign_up_cubit.dart';
 
 import '../../../core/widget/loading_item.dart';
 

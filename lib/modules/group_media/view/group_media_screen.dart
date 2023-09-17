@@ -1,7 +1,7 @@
  
 import 'package:flutter/material.dart'; 
-import 'package:skype/core/utils/functions/size_config.dart'; 
-import 'package:skype/modules/group_media/view/widgets/group_video.dart'; 
+import '../../../core/utils/functions/size_config.dart';
+import 'widgets/group_video.dart';
 import 'widgets/group_image.dart';
 import 'widgets/group_pdf.dart';
 

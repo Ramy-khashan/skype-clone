@@ -4,13 +4,13 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:skype/core/repository/user_chat_repository/user_chat_repository.dart';
-import 'package:skype/core/utils/app_strings.dart';
-import 'package:skype/core/utils/functions/pick_image.dart';
-import 'package:skype/core/utils/functions/pick_pdf.dart';
-import 'package:skype/core/utils/functions/pick_video.dart';
-import 'package:skype/core/utils/functions/uplaod_img_video_firebase.dart';
-import 'package:skype/core/utils/storage_keys.dart';
+import 'user_chat_repository.dart';
+import '../../utils/app_strings.dart';
+import '../../utils/functions/pick_image.dart';
+import '../../utils/functions/pick_pdf.dart';
+import '../../utils/functions/pick_video.dart';
+import '../../utils/functions/uplaod_img_video_firebase.dart';
+import '../../utils/storage_keys.dart';
 
 import 'package:path/path.dart' as path;
 class UserChatRepositoryImpl extends UserChatRepository {

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:skype/core/utils/app_assets.dart';
-import 'package:skype/core/utils/app_strings.dart';
-import 'package:skype/core/utils/functions/group_image_video.dart';
-import 'package:skype/modules/group/model/group_model.dart';
-import 'package:skype/modules/group_chat/view/widget/group_msg.dart';
-import 'package:skype/modules/group_manager/view/group_manager_screen.dart';
-import 'package:skype/modules/user_chat/view/widgets/emojis.dart';
+import '../../../core/utils/app_assets.dart';
+import '../../../core/utils/app_strings.dart';
+import '../../../core/utils/functions/group_image_video.dart';
+import '../../group/model/group_model.dart';
+import 'widget/group_msg.dart';
+import '../../group_manager/view/group_manager_screen.dart';
+import '../../user_chat/view/widgets/emojis.dart';
 
 import '../../../core/repository/group_chat/group_chat_repository_impl.dart';
 import '../../../core/services/server_locator.dart';

@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-
+ 
 import '../../../../core/utils/app_strings.dart';
 import '../../../../core/utils/functions/size_config.dart';
 import '../../../../core/widget/loading_item.dart';
@@ -81,8 +80,8 @@ class MemberShape extends StatelessWidget {
                                   },
                                 ),
                                 PopupMenuItem(
-                                  child: Row(
-                                    children: const [
+                                  child: const Row(
+                                    children: [
                                       Text(" Delete"),
                                     ],
                                   ),
@@ -106,7 +105,7 @@ class MemberShape extends StatelessWidget {
                                     userId: userId);
                               },
                               icon: const Icon(Icons.login_rounded))
-                          : SizedBox()),
+                          : const SizedBox()),
             );
           } else {
             return const LoadingItem();

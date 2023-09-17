@@ -6,9 +6,9 @@ import 'dart:io';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:skype/core/utils/app_strings.dart';
-import 'package:skype/core/utils/functions/uplaod_img_video_firebase.dart';
-import 'package:skype/core/utils/storage_keys.dart';
+import '../../utils/app_strings.dart';
+import '../../utils/functions/uplaod_img_video_firebase.dart';
+import '../../utils/storage_keys.dart';
 
 import '../../../modules/chats/model/user_model.dart';
 import '../../utils/functions/pick_image.dart';
@@ -32,6 +32,7 @@ class ProfileRepositoryImpl extends ProfileRepository {
     String? image = await storage.read(key: StorageKeys.userImage);
 
     return UserModel(
+      token: "",
         name: name!,
         image: image!,
         phone: phone!,

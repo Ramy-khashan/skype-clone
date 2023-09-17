@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:skype/core/utils/functions/size_config.dart';
+import '../utils/functions/size_config.dart';
 
 class HeadAimation extends StatelessWidget {
   final String head; 

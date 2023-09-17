@@ -1,12 +1,14 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:skype/core/services/server_locator.dart';
+import 'core/services/server_locator.dart';
+import 'package:timezone/data/latest.dart' as tz;
 
 import 'plala_app.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await serverLocator();
+   tz.initializeTimeZones();
   await Firebase.initializeApp(
     // options: const FirebaseOptions(
     //   apiKey: "AIzaSyBILjgLb76psvxW0MSF5tui-t0jkqyMkMI",

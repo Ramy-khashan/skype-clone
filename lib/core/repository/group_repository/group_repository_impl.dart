@@ -1,8 +1,7 @@
-import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:skype/modules/group/model/group_model.dart';
+import '../../../modules/group/model/group_model.dart';
 
 import '../../../modules/chats/model/user_model.dart';
 import '../../utils/app_strings.dart';
@@ -21,6 +20,7 @@ class GroupRepositoryImpl extends GroupRepository {
     String? image = await storage.read(key: StorageKeys.userImage);
 
     return UserModel(
+      token: "",
         name: name!,
         image: image!,
         phone: phone!,

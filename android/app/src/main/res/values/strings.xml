@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<string name="app_name">Pla-La</string> 
+<string name="facebook_app_id">260914162958638</string>
+<string name="fb_login_protocol_scheme">fb260914162958638</string>
+<string name="facebook_client_token">71cbb8bedee609b0648e06452ae0c2f6</string>
+
+</resources>

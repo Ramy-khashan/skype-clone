@@ -4,9 +4,9 @@ import 'dart:io';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:skype/core/repository/group_repository/group_repository_impl.dart';
-import 'package:skype/core/utils/functions/uplaod_img_video_firebase.dart';
-import 'package:skype/modules/group/model/group_model.dart';
+import '../../../core/repository/group_repository/group_repository_impl.dart';
+import '../../../core/utils/functions/uplaod_img_video_firebase.dart';
+import '../model/group_model.dart';
 
 import '../../../core/utils/functions/pick_image.dart';
 import '../../chats/model/user_model.dart';

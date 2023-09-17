@@ -3,6 +3,7 @@ class UserModel {
     String ?image;
     String ?phone;
     String ?email;
+    String ?token;
     String ?userUid;
     String ?userid;
 
@@ -11,6 +12,7 @@ class UserModel {
       required this.image,
       required this.phone,
       required this.email,
+      required this.token,
       required this.userUid,
       required this.userid});
       
@@ -18,6 +20,7 @@ class UserModel {
     name = json['name'];
     image = json['image'];
     phone = json['phone'];
+    token = json['token'];
     email = json['email'];
     userUid = json['user_uid'];
     userid  = json['user_id'];

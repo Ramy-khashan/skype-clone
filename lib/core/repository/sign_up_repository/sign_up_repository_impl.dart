@@ -2,12 +2,12 @@
 
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
-import 'package:skype/core/api/dio_consumer.dart';
-import 'package:skype/core/api/end_points.dart';
-import 'package:skype/core/api/exceptions.dart';
+import '../../api/dio_consumer.dart';
+import '../../api/end_points.dart';
+import '../../api/exceptions.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:skype/core/utils/app_strings.dart';
+import '../../utils/app_strings.dart';
 import 'sign_up_repository.dart';
 
 class SignUpRepositoryImpl extends SignUpRepository {

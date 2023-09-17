@@ -4,12 +4,12 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:shimmer/shimmer.dart';
-import 'package:skype/core/utils/functions/size_config.dart';
-import 'package:skype/core/utils/storage_keys.dart';
-import 'package:skype/modules/home/view/home_screen.dart';
-import 'package:skype/modules/sign_in/view/sign_in.dart';
 
 import '../../../core/utils/app_color.dart';
+import '../../../core/utils/functions/size_config.dart';
+import '../../../core/utils/storage_keys.dart';
+import '../../home/view/home_screen.dart';
+import '../../sign_in/view/sign_in.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});

@@ -5,12 +5,10 @@ import 'dart:developer';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart'; 
-import 'package:skype/core/repository/app_repository/app_repository_impl.dart';
-import 'package:skype/core/utils/app_color.dart';
-import 'package:skype/modules/calls/view/calls_screen.dart';
-import 'package:skype/modules/chats/model/user_model.dart';
-import 'package:skype/modules/chats/view/chats_screen.dart';
-import 'package:skype/modules/contact/view/contact_screen.dart';
+import '../../../core/repository/app_repository/app_repository_impl.dart';
+import '../../../core/utils/app_color.dart'; 
+import '../../chats/model/user_model.dart'; 
+import '../../contact/view/contact_screen.dart';
 
 import '../../../core/utils/functions/size_config.dart';
 import '../../group_chat_tabs/view/group_chat_tabs_screen.dart';
@@ -69,8 +67,8 @@ class HomeCubit extends Cubit<HomeState> {
 
   List<String> head = ["Chat", "Calls", "Contact"];
   List<Widget> pages = [
-   GroupChatTabsScreen(),
-    const CallScreen(),
+   const GroupChatTabsScreen(),
+    // const CallScreen(),
     const ContactScreen()
   ];
   List<Widget> appBarHead = [];

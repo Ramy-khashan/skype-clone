@@ -5,14 +5,13 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:skype/config/app_controller/appcontrorller_cubit.dart';
-import 'package:skype/core/api/dio_consumer.dart';
-import 'package:skype/core/api/end_points.dart';
-import 'package:skype/core/api/exceptions.dart';
+import '../../api/dio_consumer.dart';
+import '../../api/end_points.dart';
+import '../../api/exceptions.dart';
 
 import 'package:dartz/dartz.dart';
-import 'package:skype/core/utils/app_strings.dart';
-import 'package:skype/core/utils/storage_keys.dart';
+import '../../utils/app_strings.dart';
+import '../../utils/storage_keys.dart';
 
 import 'sign_in_repository.dart';
 
@@ -22,13 +21,15 @@ class SignInRepositoryImpl extends SignInRepository {
   SignInRepositoryImpl({required this.dio});
   @override
   Future<Either<ServerException, String>> forgetPassword() {
-    // TODO: implement forgetPassword
-    throw UnimplementedError();
+     throw UnimplementedError();
   }
 
   @override
   Future<Either<ServerException, String>> signIn(
-      {required String email, required String password, context}) async {
+      {required String email,
+      required String password,
+      context,
+      required String token}) async {
     final fcmToken = await FirebaseMessaging.instance.getToken();
     log(fcmToken.toString());
     try {
@@ -37,7 +38,7 @@ class SignInRepositoryImpl extends SignInRepository {
         "password": password,
         "returnSecureToken": true
       });
-      await setLocalData(uid: res["localId"], context: context);
+      await setLocalData(uid: res["localId"], context: context,token:token);
       return right("");
     } on FirebaseException catch (e) {
       return left(ServerException(e.message));
@@ -50,14 +51,13 @@ class SignInRepositoryImpl extends SignInRepository {
     }
   }
 
-  setLocalData({required String uid, context}) async {
+  setLocalData({required String uid, context,token  }) async {
     var storage = const FlutterSecureStorage();
     await FirebaseFirestore.instance
         .collection(AppString.firestorUsereKey)
         .where("user_uid", isEqualTo: uid)
         .get()
-        .then((value) { 
-
+        .then((value) {
       storage.write(
           key: StorageKeys.userEmail, value: value.docs[0].get("email"));
       storage.write(
@@ -68,6 +68,8 @@ class SignInRepositoryImpl extends SignInRepository {
           key: StorageKeys.userUid, value: value.docs[0].get("user_uid"));
       storage.write(
           key: StorageKeys.userImage, value: value.docs[0].get("image"));
+      setTokenDevice(userId:  value.docs[0].id,token: token);
+
       storage.write(
           key: StorageKeys.userPrivateState,
           value: value.docs[0].get("private").toString());
@@ -76,7 +78,8 @@ class SignInRepositoryImpl extends SignInRepository {
   }
 
   @override
-  Future<Either<String, String>> signInWithGoogle(context) async {
+  Future<Either<String, String>> signInWithGoogle(context,
+      {required String token}) async {
     try {
       GoogleSignIn signInGoogle = GoogleSignIn(
           clientId:
@@ -91,11 +94,11 @@ class SignInRepositoryImpl extends SignInRepository {
         accessToken: googleSignInAuthentication.accessToken,
         idToken: googleSignInAuthentication.idToken,
       );
-      final fcmToken = await FirebaseMessaging.instance.getToken();
-      log(fcmToken.toString());
+      // final fcmToken = await FirebaseMessaging.instance.getToken();
+      // log(fcmToken.toString());
       UserCredential userCredential =
           await FirebaseAuth.instance.signInWithCredential(credential);
-      await setDataFromGoogle(userData: userCredential, context: context);
+      await setDataFromGoogle(userData: userCredential, context: context,token:token);
       return right("Enter Successfully");
     } on FirebaseException catch (e) {
       return left(e.toString());
@@ -105,7 +108,7 @@ class SignInRepositoryImpl extends SignInRepository {
     }
   }
 
-  setDataFromGoogle({required UserCredential userData, context}) async {
+  setDataFromGoogle({required UserCredential userData, context,token}) async {
     int count = 0;
     await FirebaseFirestore.instance
         .collection(AppString.firestorUsereKey)
@@ -121,8 +124,9 @@ class SignInRepositoryImpl extends SignInRepository {
         "email": userData.user!.email,
         "phone": userData.user!.phoneNumber ?? "Not Exsist",
         "name": userData.user!.displayName ?? "Name",
-        "users": [], 
+        "users": [],
         "private": true,
+         
         "user_uid": userData.user!.uid,
         "image": userData.user!.photoURL ??
             'https://firebasestorage.googleapis.com/v0/b/have-fun-a5c87.appspot.com/o/userImg.png?alt=media&token=4f962df4-7c2d-4dd2-8950-f64e1ed9863d'
@@ -132,10 +136,17 @@ class SignInRepositoryImpl extends SignInRepository {
             .doc(value.id)
             .update({"user_id": value.id});
       }).whenComplete(() async {
-        await setLocalData(uid: userData.user!.uid, context: context);
+        await setLocalData(uid: userData.user!.uid, context: context,token:token);
       });
     } else {
-      await setLocalData(uid: userData.user!.uid, context: context);
+      await setLocalData(uid: userData.user!.uid, context: context,token:token);
     }
+  }
+
+  setTokenDevice({required String userId,token}) async {
+       await FirebaseFirestore.instance
+            .collection(AppString.firestorUsereKey)
+            .doc(userId)
+            .update({"token": token});
   }
 }

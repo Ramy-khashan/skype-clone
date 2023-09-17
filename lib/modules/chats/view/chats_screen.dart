@@ -2,9 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-import 'package:skype/core/utils/app_color.dart';
-import 'package:skype/core/utils/functions/size_config.dart';
-import 'package:skype/core/widget/loading_item.dart';
+import '../../../core/utils/app_color.dart';
+import '../../../core/utils/functions/size_config.dart';
+import '../../../core/widget/loading_item.dart';
 import '../../../core/utils/app_assets.dart';
 import '../../../core/utils/app_strings.dart';
 import '../../user_chat/view/user_chat_screen.dart';
@@ -60,7 +60,7 @@ class ChatScreen extends StatelessWidget {
                                         .doc(controller.userModel!.userid!)
                                         .collection(controller
                                             .userFriendData[index].userid!)
-                                        .orderBy("time")
+                                        .orderBy("time",)
                                         .snapshots(),
                                     builder: (context,
                                         AsyncSnapshot<QuerySnapshot> snapshot) {

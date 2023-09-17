@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:skype/core/utils/functions/open_url.dart';
+import '../../../../core/utils/functions/open_url.dart';
  
 import '../../../../core/utils/app_strings.dart';
 import '../../../../core/utils/functions/size_config.dart';

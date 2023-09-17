@@ -1,23 +1,19 @@
-import 'dart:developer';
-import 'dart:math';
-
+ 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:regexpattern/regexpattern.dart';
-import 'package:skype/core/widget/loading_item.dart';
-import 'package:skype/core/widget/pdf_container.dart';
-import 'package:skype/core/widget/video_container.dart';
+import '../../../../core/widget/loading_item.dart';
+import '../../../../core/widget/pdf_container.dart';
+import '../../../../core/widget/video_container.dart';
 
 import '../../../../core/utils/app_assets.dart';
 import '../../../../core/utils/app_color.dart';
 import '../../../../core/utils/app_strings.dart';
 import '../../../../core/utils/functions/open_url.dart';
 import '../../../../core/utils/functions/size_config.dart';
-import '../../controller/user_chat_cubit.dart';
-import 'view_image.dart';
+ import 'view_image.dart';
 
 class MessageItem extends StatelessWidget {
   final String userid;

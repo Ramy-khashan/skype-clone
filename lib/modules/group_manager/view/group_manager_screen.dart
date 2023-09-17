@@ -1,17 +1,15 @@
-import 'dart:developer';
+ 
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:skype/core/utils/app_strings.dart';
-import 'package:skype/core/utils/functions/size_config.dart';
-import 'package:skype/core/widget/loading_item.dart';
-import 'package:skype/modules/group/model/group_model.dart';
-import 'package:skype/modules/group_manager/view/widgets/group_media_shape.dart';
-import 'package:skype/modules/group_manager/view/widgets/member_shape.dart';
-import 'package:skype/modules/group_media/view/group_media_screen.dart';
-
+import '../../../core/utils/app_strings.dart';
+import '../../../core/utils/functions/size_config.dart';
+import '../../../core/widget/loading_item.dart';
+import '../../group/model/group_model.dart';
+import 'widgets/group_media_shape.dart';
+import 'widgets/member_shape.dart'; 
 import '../../../core/utils/app_color.dart';
 import '../controller/group_manager_cubit.dart';
 

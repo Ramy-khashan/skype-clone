@@ -1,7 +1,7 @@
 import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:skype/core/widget/loading_item.dart';
+import 'loading_item.dart';
 import 'package:video_player/video_player.dart';
 
 class VideoContainerShape extends StatefulWidget {

@@ -1,6 +1,6 @@
 import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart' as foundation;
+import 'package:flutter/material.dart';
 class EmojisScreen extends StatelessWidget {
   final bool isEmoji;
   final Function onChange;
@@ -37,7 +37,7 @@ class EmojisScreen extends StatelessWidget {
               skinToneDialogBgColor: Colors.white,
               skinToneIndicatorColor: Colors.grey,
               enableSkinTones: true,
-              showRecentsTab: true,
+             
 
               recentsLimit: 28,
               replaceEmojiOnLimitExceed: false,

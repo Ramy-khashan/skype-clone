@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:skype/core/utils/functions/size_config.dart';
-import 'package:skype/modules/group/view/group_screen.dart';
+import '../../../core/utils/functions/size_config.dart';
+import '../../group/view/group_screen.dart';
 
 import '../../chats/view/chats_screen.dart';
 

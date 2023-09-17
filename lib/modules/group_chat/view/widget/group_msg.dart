@@ -1,12 +1,9 @@
-import 'dart:developer';
-import 'dart:math';
-
+ 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:regexpattern/regexpattern.dart';
-import 'package:skype/core/widget/loading_item.dart';
+ import 'package:regexpattern/regexpattern.dart';
+import '../../../../core/widget/loading_item.dart';
 
 import '../../../../core/utils/app_assets.dart';
 import '../../../../core/utils/app_color.dart';

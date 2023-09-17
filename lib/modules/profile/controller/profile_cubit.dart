@@ -3,14 +3,13 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/material.dart';
+ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:skype/core/repository/profile_repository/profile_repository_impl.dart';
-import 'package:skype/core/utils/app_strings.dart';
-import 'package:skype/core/utils/functions/app_toast.dart';
-import 'package:skype/core/utils/storage_keys.dart';
+import '../../../core/repository/profile_repository/profile_repository_impl.dart';
+import '../../../core/utils/app_strings.dart';
+import '../../../core/utils/functions/app_toast.dart';
+import '../../../core/utils/storage_keys.dart';
 
 import '../../home/view/home_screen.dart';
 import '../../splash_screen/view/view.dart';

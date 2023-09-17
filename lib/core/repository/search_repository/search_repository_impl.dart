@@ -1,14 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:skype/config/app_controller/appcontrorller_cubit.dart';
-import 'package:skype/core/utils/app_strings.dart';
-import 'package:skype/core/utils/functions/app_toast.dart';
-import 'package:skype/core/utils/storage_keys.dart';
-import 'package:skype/modules/chats/model/user_model.dart';
+ import '../../utils/app_strings.dart';
+import '../../utils/functions/app_toast.dart';
+import '../../utils/storage_keys.dart';
+import '../../../modules/chats/model/user_model.dart';
 
-import 'package:dartz/dartz.dart';
-
-import '../../../modules/chats/cubit/chat_cubit.dart';
+import 'package:dartz/dartz.dart'; 
 import 'search_repository.dart';
 
 class SearchRepositoryImpl extends SearchRepository {
@@ -99,6 +96,6 @@ class SearchRepositoryImpl extends SearchRepository {
         .update({
       "users": FieldValue.arrayUnion([userid])
     });
-    ChatCubit.get(context).getFrinds();
+    
   }
 }

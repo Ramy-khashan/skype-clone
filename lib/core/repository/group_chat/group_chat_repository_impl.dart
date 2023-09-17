@@ -5,8 +5,8 @@ import 'package:path/path.dart' as path;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:skype/core/repository/group_chat/group_chat_repository.dart';
-import 'package:skype/core/utils/functions/pick_pdf.dart';
+import 'group_chat_repository.dart';
+import '../../utils/functions/pick_pdf.dart';
 
 import '../../utils/app_strings.dart';
 import '../../utils/functions/pick_image.dart';

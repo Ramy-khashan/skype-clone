@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:skype/core/utils/functions/size_config.dart'; 
+import '../utils/functions/size_config.dart';
 
 class AppButton extends StatelessWidget {
   final String head;
@@ -15,7 +15,8 @@ class AppButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom( 
-        elevation: 9,
+            elevation: 9,
+        
           padding:  EdgeInsets.symmetric(horizontal: getWidth(20), vertical: getHeight(10))),
       onPressed: onPress,
       child: Text(

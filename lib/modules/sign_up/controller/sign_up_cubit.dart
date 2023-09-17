@@ -2,9 +2,9 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:skype/core/repository/sign_up_repository/sign_up_repository_impl.dart';
-import 'package:skype/core/utils/functions/app_toast.dart';
-import 'package:skype/modules/sign_in/view/sign_in.dart';
+import '../../../core/repository/sign_up_repository/sign_up_repository_impl.dart';
+import '../../../core/utils/functions/app_toast.dart';
+import '../../sign_in/view/sign_in.dart';
 
 part 'sign_up_state.dart';
 

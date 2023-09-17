@@ -1,8 +1,10 @@
 import 'package:equatable/equatable.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:skype/core/repository/sign_in_repository/sign_in_repository_impl.dart';
-import 'package:skype/core/utils/functions/app_toast.dart';
+import '../../../core/repository/sign_in_repository/sign_in_repository_impl.dart';
+import '../../../core/services/notification/notification_seervices.dart';
+import '../../../core/utils/functions/app_toast.dart';
 
 import '../../home/view/home_screen.dart';
 
@@ -30,6 +32,7 @@ class SignInCubit extends Cubit<SignInState> {
     var response = await signInRepositoryImpl.signIn(
         email: emailController.text.trim(),
         password: passwodController.text.trim(),
+        token: token!,
         context: context);
     response.fold((l) {
       appToast(l.toString());
@@ -51,7 +54,7 @@ class SignInCubit extends Cubit<SignInState> {
   signInWithGoogle(context) async {
     isLoadingSignInGoogle = true;
     emit(LoadingSignInGoogleState());
-    var response = await signInRepositoryImpl.signInWithGoogle(context);
+    var response = await signInRepositoryImpl.signInWithGoogle(context,token: token!);
     response.fold((l) {
       appToast(l.toString());
       isLoadingSignInGoogle = false;
@@ -66,5 +69,27 @@ class SignInCubit extends Cubit<SignInState> {
           ),
           (route) => false);
     });
+  }
+
+  String? token;
+  getToken() async {
+    WidgetsFlutterBinding.ensureInitialized();
+    try {
+      NotificationService().initNotification();
+      // FirebaseCrashlytics.instance.crash();
+      // FirebaseCrashlyticsPlatform.instance.crash();
+      token = await FirebaseMessaging.instance.getToken();
+      
+      FirebaseMessaging.onMessage.listen((event) {
+        
+        String? title = event.notification?.title;
+        String? body = event.notification?.body;
+        NotificationService().showNotification(1, title!, body!, 2);
+      });
+
+      FirebaseMessaging.onMessageOpenedApp.listen((event) {
+        
+      });
+    } catch (e) {}
   }
 }

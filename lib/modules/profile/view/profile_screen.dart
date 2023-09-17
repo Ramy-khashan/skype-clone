@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:skype/core/utils/functions/size_config.dart';
-import 'package:skype/core/widget/app_button.dart';
-import 'package:skype/core/widget/loading_item.dart';
-import 'package:skype/modules/chats/model/user_model.dart';
-import 'package:skype/modules/profile/controller/profile_cubit.dart';
+import '../../../core/utils/functions/size_config.dart';
+import '../../../core/widget/app_button.dart'; 
+import '../../chats/model/user_model.dart';
+import '../controller/profile_cubit.dart';
 
 import '../../../config/app_controller/appcontrorller_cubit.dart';
 import '../../../core/repository/profile_repository/profile_repository_impl.dart';
@@ -163,6 +162,7 @@ class ProfileScreen extends StatelessWidget {
                           height: 10,
                         ),
                         AppButton(
+                          
                             head: "Log out",
                             headSize: 22,
                             onPress: () async {

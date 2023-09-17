@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:skype/core/repository/app_repository/app_repository_impl.dart';
-import 'package:skype/core/utils/app_color.dart';
-import 'package:skype/core/utils/functions/size_config.dart';
-import 'package:skype/modules/home/controller/home_cubit.dart';
+import '../../../core/repository/app_repository/app_repository_impl.dart';
+import '../../../core/utils/app_color.dart';
+import '../../../core/utils/functions/size_config.dart';
+import '../controller/home_cubit.dart';
 import '../../../core/repository/group_repository/group_repository_impl.dart';
 import '../../../core/services/server_locator.dart';
 import '../../chats/cubit/chat_cubit.dart';
@@ -67,7 +67,7 @@ class HomeScreen extends StatelessWidget {
                   ),
                   centerTitle: true,
                   title: controller.appBarHead.isEmpty
-                      ? CircleAvatar(
+                      ? const CircleAvatar(
                           backgroundColor: AppColor.primary,
                         )
                       : controller.appBarHead[controller.selectedIndex],
@@ -76,7 +76,7 @@ class HomeScreen extends StatelessWidget {
                   children: [
                     controller.pages[controller.selectedIndex],
                     controller.selectedIndex==0
-                        ? SizedBox()
+                        ? const SizedBox()
                         : Positioned(
                             bottom: 10,
                             child: Container(

@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:skype/core/api/exceptions.dart';
+import '../../api/exceptions.dart';
 
 abstract class SignUpRepository {
   Future<Either<ServerException, String>> signUpMethod(

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:skype/core/utils/app_color.dart';
-import 'package:skype/core/utils/functions/size_config.dart';
+import '../app_color.dart';
+import 'size_config.dart';
  
 
 class BottomSheetHead extends StatelessWidget { 

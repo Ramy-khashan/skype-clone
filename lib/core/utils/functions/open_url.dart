@@ -1,5 +1,5 @@
 import 'dart:developer'; 
-import 'package:skype/core/utils/functions/app_toast.dart';
+import 'app_toast.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 onOpenUrl({required String url}) async {

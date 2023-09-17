@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'package:skype/core/utils/app_color.dart';
-import 'package:skype/core/utils/functions/app_toast.dart';
-import 'package:skype/core/utils/functions/size_config.dart';
-import 'package:skype/core/widget/app_button.dart';
+import '../app_color.dart';
+import 'app_toast.dart';
+import 'size_config.dart';
+import '../../widget/app_button.dart';
 
 import '../../../modules/group/controller/group_cubit.dart';
 import '../../widget/loading_item.dart';
